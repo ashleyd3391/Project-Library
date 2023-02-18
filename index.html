@@ -5,11 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Library</title>
-
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
 </head>
 <body>
+    <h1 id="title">Library App</h1>
+    <h3 id="intro">Welcome to your own personal library! Here you will be able to manage your reading list and track your progress. Click the button to add a book to your library and begin your reading journey!</h3>
+    
+    <div class="bookList">
+        <img id="cover"   height="300px"   src="https://m.media-amazon.com/images/I/71FCDkExLKL._AC_UF1000,1000_QL80_.jpg">
+    </div>
+
+    <button id="addBook">+</button>
+
+    <form id="bookForm" style="display:none">
+        
+        <label for="book_name">What is the name of the book?</label>
+            <input type="text" id="first_name" required>
+        <label for="author_name">Who is the author of the book?</label>
+            <input type="text" id="author_name" required>
+        <label for="book_pages">How many pages does the book have?</label>
+            <input type="number" id="book_pages" required>
+        <label for="read_status">Have you read this book yet?</label>
+            <input type="checkbox" id="read_status">
+            <button id="submit">submit</button>
+        
+
+    </form>
+    <script src="script.js"></script>
     
 </body>
 </html>
