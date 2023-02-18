@@ -1,0 +1,42 @@
+#title{
+    color:blueviolet;
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 7vh;
+    border-bottom: solid;
+    margin-bottom: 2%;
+}
+
+#intro{
+    color: rgb(125, 125, 206);
+    width: 30%;
+    margin-left: 35%;
+    font-weight: 100;
+    margin-bottom: 3%;
+}
+
+.bookList{
+    width: 70%;
+    margin-left: 15%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    border: solid;
+    border-width: 1px;
+    border-color: blueviolet;
+}
+#cover{
+    z-index: -1;
+}
+
+#addBook{
+    background-color: rgb(166, 98, 187);
+    color: white;
+    width: 5%;
+    height: 10vh;
+    font-size: 4rem;
+    border-radius: 100px;
+    margin-top: 10%;
+    margin-left: 5%;
+}
+
