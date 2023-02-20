@@ -11,8 +11,8 @@
 
 #bookLogo{
     height: 8vh;
-    margin-left: 18%;
-    margin-top: -13vh;
+    margin-left: 330px;
+    margin-top: -7%;
     position: absolute;
     filter: invert(80%) sepia(40%) saturate(23) hue-rotate(-85deg) brightness(80%) contrast(80%);
 }
@@ -44,8 +44,8 @@
 #addBook{
     background-color: rgb(107, 98, 187);
     color: white;
-    width: 5%;
-    height: 10vh;
+    width: 100px;
+    height: 100px;
     font-size: 4rem;
     border-radius: 100px;
     margin-top: 10%;
@@ -59,4 +59,3 @@
     rotate: 180deg;
     background-color: rgb(212, 154, 210);
 }
-
