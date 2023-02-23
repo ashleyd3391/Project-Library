@@ -1,6 +1,10 @@
 const bookForm = document.getElementById("bookForm");
+
 const addBookButton = document.getElementById("addBook");
-    addBookButton.addEventListener("click", addBookToLibrary);
+    addBookButton.addEventListener("click", openBookForm);
+
+const submitButton = document.getElementById("submit");
+    submitButton.addEventListener("click", addBookToLibrary);
 
 let myLibrary = [{
 
@@ -16,33 +20,7 @@ let myLibrary = [{
     read: "true"
 }];
 
-function createBookElement(el, content, className){
-    const element = document.createElement(el);
-    element.textContent = content;
-    element.setAttribute("class", className);
-    return element;
-}
-
-function createBookItem(book, index) {
-    const bookItem = document.createElement("div");
-    bookItem.setAttribute("id", index);
-    bookItem.setAttribute("key", index);
-    bookItem.setAttribute("class", "card book");
-    bookItem.appendChild(createBookElement("h1", "Title: ${book.title}", "book-title"));
-    bookItem.appendChild(createBookElement("h1", "Author: ${book.author}", "book-author"));
-    bookItem.appendChild(createBookElement("h1", "Pages: ${book.pages}", "book-pages"));
-    book.insertAdjacentElement("afterbegin", bookItem);
-};
-
-function renderBooks(){
-    myLibrary.map((book, index) => {
-        createBookItem(book, index);
-    })
-};
-
-renderBooks();
-
-function addBookToLibrary() {
+function openBookForm() {
     document.getElementById("bookForm").style.display = "initial";
     bookForm.style.display = "grid";
     bookForm.style.gridTemplateColumns = "300px";
@@ -56,9 +34,31 @@ function addBookToLibrary() {
     // do stuff here
 };
 
+function addBookToLibrary(){
+    event.preventDefault();
+    let book = {
+        title: document.getElementById("book_name").value,
+        author: document.getElementById("author_name").value,
+        pages: document.getElementById("book_pages").value,
+        read: document.getElementById("read_status").value
+    }
+
+    myLibrary.push(book);
+    document.querySelector("form").reset();
+    localStorage.setItem("myLibraryList", JSON.stringify(myLibrary));
+};
+
 function displayBooks() {
     //loops through array and displays each book on the page
 };
+
+//Next Steps:
+    // take user input and store in array - done
+    // display array items and loop through them
+    // add delete button to remove each book
+    // add function that showsn read status/ change status of book
+        //toggle read status on Book prototype
+
 
 //add new book button 
     //shows form allowing users to input details for new book
