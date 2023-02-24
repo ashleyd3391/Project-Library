@@ -36,6 +36,7 @@ function openBookForm() {
 
 function addBookToLibrary(){
     event.preventDefault();
+
     let book = {
         title: document.getElementById("book_name").value,
         author: document.getElementById("author_name").value,
@@ -46,10 +47,23 @@ function addBookToLibrary(){
     myLibrary.push(book);
     document.querySelector("form").reset();
     localStorage.setItem("myLibraryList", JSON.stringify(myLibrary));
+    bookForm.style.display = "none";
+     createBookCover();
 };
 
 function displayBooks() {
     //loops through array and displays each book on the page
+
+};
+
+function createBookCover(){
+    const bookCover = document.getElementById("bookList");
+    for (let i = 0; i < myLibrary.length; i++) {
+        let book = myLibrary[i];
+        let bookItem = document.createElement("div");
+        bookItem.innerHTML = `<p>${book.title}</p>`;
+        myLibrary.appendChild(bookItem);
+    }
 };
 
 //Next Steps:
