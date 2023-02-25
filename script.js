@@ -6,19 +6,8 @@ const addBookButton = document.getElementById("addBook");
 const submitButton = document.getElementById("submit");
     submitButton.addEventListener("click", addBookToLibrary);
 
-let myLibrary = [{
+let myLibrary = [];
 
-    title: "Scapegracers",
-    author: "H.A. Clarke",
-    pages: "400",
-    read: "false"
-}, 
-{
-    title: "Morrigan's Cross",
-    author: "Nora Roberts",
-    pages: "400",
-    read: "true"
-}];
 
 function openBookForm() {
     document.getElementById("bookForm").style.display = "initial";
@@ -34,6 +23,37 @@ function openBookForm() {
     // do stuff here
 };
 
+function createBookCover(){
+
+    myLibrary.forEach((book, index) => {
+        const body = document.body;
+        const bookList = document.getElementById("bookList");
+        const div = document.createElement("div");
+        bookList.append(div);
+
+        bookList.style.display = "grid";
+        bookList.style.gridTemplateColumns = "repeat(4, 300px)";
+        bookList.style.gridTemplateRows = "min";
+        bookList.style.textAlign = "left";
+
+
+        const title = document.createElement("p");
+        title.innerHTML = "Title:" + " " + `${book.title}`;
+
+        const author = document.createElement("p");
+        author.innerHTML = "Author:" + " " + `${book.author}`;
+    
+        const pages = document.createElement("p");
+        pages.innerHTML = "Pages:" + " " + `${book.pages}`;
+
+        const read = document.createElement("p");
+        read.innerHTML = "Read:" + " " + `${book.read}`;
+
+        div.append(title, author, pages, read);
+
+    });
+};
+
 function addBookToLibrary(){
     event.preventDefault();
 
@@ -42,13 +62,18 @@ function addBookToLibrary(){
         author: document.getElementById("author_name").value,
         pages: document.getElementById("book_pages").value,
         read: document.getElementById("read_status").value
-    }
+    };
 
     myLibrary.push(book);
-    document.querySelector("form").reset();
     localStorage.setItem("myLibraryList", JSON.stringify(myLibrary));
+    document.querySelector("form").reset();
     bookForm.style.display = "none";
-     createBookCover();
+    updateLibrary();
+    createBookCover();
+};
+
+function updateLibrary(){
+
 };
 
 function displayBooks() {
@@ -56,15 +81,6 @@ function displayBooks() {
 
 };
 
-function createBookCover(){
-    const bookCover = document.getElementById("bookList");
-    for (let i = 0; i < myLibrary.length; i++) {
-        let book = myLibrary[i];
-        let bookItem = document.createElement("div");
-        bookItem.innerHTML = `<p>${book.title}</p>`;
-        myLibrary.appendChild(bookItem);
-    }
-};
 
 //Next Steps:
     // take user input and store in array - done
