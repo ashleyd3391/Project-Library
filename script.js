@@ -6,6 +6,10 @@ const addBookButton = document.getElementById("addBook");
 const submitButton = document.getElementById("submit");
     submitButton.addEventListener("click", addBookToLibrary);
 
+const bookList = document.getElementById("bookList");
+
+let bookNumber = 0;
+
 let myLibrary = [];
 
 
@@ -25,8 +29,7 @@ function openBookForm() {
 
 function createBookCover(){
 
-    myLibrary.forEach((book, index) => {
-        const body = document.body;
+    myLibrary.forEach((book) => {
         const bookList = document.getElementById("bookList");
         const div = document.createElement("div");
         bookList.append(div);
@@ -35,7 +38,13 @@ function createBookCover(){
         bookList.style.gridTemplateColumns = "repeat(4, 300px)";
         bookList.style.gridTemplateRows = "min";
         bookList.style.textAlign = "left";
+    
 
+        div.style.border = "solid";
+        div.style.borderWidth = "1px";
+        div.style.margin = "50px";
+        div.style.padding = "20px";
+        div.style.zIndex = "-2";
 
         const title = document.createElement("p");
         title.innerHTML = "Title:" + " " + `${book.title}`;
@@ -46,13 +55,25 @@ function createBookCover(){
         const pages = document.createElement("p");
         pages.innerHTML = "Pages:" + " " + `${book.pages}`;
 
-        const read = document.createElement("p");
+        const read = document.createElement("button");
         read.innerHTML = "Read:" + " " + `${book.read}`;
 
-        div.append(title, author, pages, read);
+        const removeButton = document.createElement("button");
+        removeButton.innerHTML = "Remove";
+        removeButton.style.marginLeft = "3vh";
+
+        function removeBook(){
+            bookList.removeAttribute(div);
+        };
+        removeButton.addEventListener("click", removeBook);
+
+
+        div.append(title, author, pages, read, removeButton);
 
     });
 };
+
+
 
 function addBookToLibrary(){
     event.preventDefault();
@@ -68,13 +89,15 @@ function addBookToLibrary(){
     localStorage.setItem("myLibraryList", JSON.stringify(myLibrary));
     document.querySelector("form").reset();
     bookForm.style.display = "none";
-    updateLibrary();
     createBookCover();
+    updateLibrary();
 };
 
 function updateLibrary(){
-
+        myLibrary = [];
+        bookList.removeChild(emptyAlert);
 };
+
 
 function displayBooks() {
     //loops through array and displays each book on the page
@@ -82,9 +105,19 @@ function displayBooks() {
 };
 
 
+    const emptyAlert = document.createElement("h1");
+    emptyAlert.innerHTML = "Your library is empty!";
+    bookList.appendChild(emptyAlert);
+    emptyAlert.style.zIndex = "-1";
+    emptyAlert.style.marginTop = "120px";
+
+
+
+
+
 //Next Steps:
     // take user input and store in array - done
-    // display array items and loop through them
+    // display array items and loop through them - done
     // add delete button to remove each book
     // add function that showsn read status/ change status of book
         //toggle read status on Book prototype
