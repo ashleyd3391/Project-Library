@@ -26,6 +26,8 @@
 }
 
 #bookList{
+    overflow: scroll;
+    height: 300px;
     width: 70%;
     margin-left: 15%;
     padding: 20px;
