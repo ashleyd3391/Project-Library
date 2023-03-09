@@ -27,6 +27,7 @@ function openBookForm() {
     // do stuff here
 };
 
+
 function createBookCover(){
 
     myLibrary.forEach((book) => {
@@ -37,12 +38,11 @@ function createBookCover(){
         bookList.style.display = "grid";
         bookList.style.gridTemplateColumns = "repeat(4, 300px)";
         bookList.style.gridTemplateRows = "min";
-        bookList.style.textAlign = "left";
     
 
         div.style.border = "solid";
         div.style.borderWidth = "1px";
-        div.style.margin = "50px";
+
         div.style.padding = "20px";
         div.style.zIndex = "-2";
 
@@ -56,23 +56,30 @@ function createBookCover(){
         pages.innerHTML = "Pages:" + " " + `${book.pages}`;
 
         const read = document.createElement("button");
-        read.innerHTML = "Read:" + " " + `${book.read}`;
+        read.innerHTML = "Read:" + " " + `${book.read}`;  
+        
+        div.append(title, author, pages, read);
 
         const removeButton = document.createElement("button");
         removeButton.innerHTML = "Remove";
-        removeButton.style.marginLeft = "3vh";
+        removeButton.style.height = "50px";
+        removeButton.style.width = "100px";
+        removeButton.style.marginLeft = "-200px";
+        removeButton.style.marginTop = "220px";
+        bookList.appendChild(removeButton);
+        removeButton.addEventListener("click", () => {
 
-        function removeBook(){
-            bookList.removeAttribute(div);
-        };
-        removeButton.addEventListener("click", removeBook);
+            bookList.removeChild(div);
+            bookList.removeChild(removeButton);
+        });
 
+        removeButton.removeEventListener("click", () => {
 
-        div.append(title, author, pages, read, removeButton);
+            bookList.removeChild(div);
+            bookList.removeChild(removeButton);
+        });
 
-    });
-};
-
+})};
 
 
 function addBookToLibrary(){
@@ -105,11 +112,11 @@ function displayBooks() {
 };
 
 
-    const emptyAlert = document.createElement("h1");
-    emptyAlert.innerHTML = "Your library is empty!";
-    bookList.appendChild(emptyAlert);
-    emptyAlert.style.zIndex = "-1";
-    emptyAlert.style.marginTop = "120px";
+const emptyAlert = document.createElement("h1");
+emptyAlert.innerHTML = "Your library is empty!";
+bookList.appendChild(emptyAlert);
+emptyAlert.style.zIndex = "-1";
+emptyAlert.style.marginTop = "120px";
 
 
 
