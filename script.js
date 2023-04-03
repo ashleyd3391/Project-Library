@@ -36,41 +36,54 @@ function createBookCover(){
         bookList.append(div);
 
         bookList.style.display = "grid";
-        bookList.style.gridTemplateColumns = "repeat(4, 300px)";
+        bookList.style.gridTemplateColumns = "repeat(9, 100px)";
         bookList.style.gridTemplateRows = "min";
     
 
         div.style.border = "solid";
         div.style.borderWidth = "1px";
-
+        div.style.borderColor = "rgb(182, 144, 233)";
+        div.style.height = "250px";
+        div.style.width = "250px";
+        div.style.margin = "10px";
         div.style.padding = "20px";
         div.style.zIndex = "-2";
 
         const title = document.createElement("p");
         title.innerHTML = "Title:" + " " + `${book.title}`;
+        title.style.color = "rgb(125, 125, 206)";
 
         const author = document.createElement("p");
         author.innerHTML = "Author:" + " " + `${book.author}`;
+        author.style.color = "rgb(125, 125, 206)";
     
         const pages = document.createElement("p");
         pages.innerHTML = "Pages:" + " " + `${book.pages}`;
+        pages.style.color = "rgb(125, 125, 206)";
 
         const read = document.createElement("button");
-        read.innerHTML = "Read:" + " " + `${book.read}`;  
+        read.innerHTML = "Read: on";  
+        read.style.backgroundColor = "rgb(125, 125, 206)";
+        read.style.fontSize = "1rem";
+        read.style.color = "white";
         
-        div.append(title, author, pages, read);
+        div.append(title, author, pages);
 
         const removeButton = document.createElement("button");
         removeButton.innerHTML = "Remove";
         removeButton.style.height = "50px";
         removeButton.style.width = "100px";
-        removeButton.style.marginLeft = "-200px";
+        removeButton.style.marginLeft = "10px";
         removeButton.style.marginTop = "220px";
-        bookList.appendChild(removeButton);
+        removeButton.style.backgroundColor = "rgb(182, 144, 233)";
+        removeButton.style.fontSize = "1rem";
+        removeButton.style.color = "white";
+        bookList.append(removeButton, read);
         removeButton.addEventListener("click", () => {
 
             bookList.removeChild(div);
             bookList.removeChild(removeButton);
+            bookList.removeChild(read);
         });
 
         removeButton.removeEventListener("click", () => {
@@ -81,17 +94,22 @@ function createBookCover(){
 
         read.style.height = "50px";
         read.style.width = "100px";
-        read.style.marginLeft = "-500px";
+        read.style.marginLeft = "-90px";
         read.style.marginTop = "150px";
-        bookList.append(read);
+
 
         function changeReadStatus(){
             if(read.innerHTML == "Read: on"){
                 read.innerHTML = "Read: off";
+                read.style.backgroundColor = "white";
+                read.style.color = "rgb(125, 125, 206)";
+                read.style.borderColor = "rgb(125, 125, 206)";
             } 
             
             else{
                 read.innerHTML = "Read: on";
+                read.style.backgroundColor = "rgb(125, 125, 206)";
+                read.style.color = "white";
             }
         };
 
@@ -107,7 +125,7 @@ function addBookToLibrary(){
         title: document.getElementById("book_name").value,
         author: document.getElementById("author_name").value,
         pages: document.getElementById("book_pages").value,
-        read: document.getElementById("read_status").value
+
     };
 
     myLibrary.push(book);
