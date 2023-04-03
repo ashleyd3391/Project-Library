@@ -16,15 +16,24 @@ let myLibrary = [];
 function openBookForm() {
 
     document.getElementById("bookForm").style.display = "initial";
+    bookForm.style.position = "absolute";
+    bookForm.style.zIndex = "5";
     bookForm.style.display = "grid";
     bookForm.style.gridTemplateColumns = "300px";
     bookForm.style.rowGap = "20px";
     bookForm.style.backgroundColor = "rgb(125, 125, 206)";
     bookForm.style.width = "300px";
-    bookForm.style.padding = "20px";
+    bookForm.style.padding = "40px";
     bookForm.style.marginLeft = "40%";
     bookForm.style.marginTop = "-33%";
+    bookForm.style.fontSize = "1.5rem";
+    bookForm.style.color = "white";
 
+    submitButton.style.width = "150px";
+    submitButton.style.marginLeft = "80px";
+    submitButton.style.height = "40px";
+    submitButton.style.fontSize = "1.3rem";
+    submitButton.style.color = "rgb(125, 125, 206)"
 };
 
 
@@ -47,7 +56,6 @@ function createBookCover(){
         div.style.width = "250px";
         div.style.margin = "10px";
         div.style.padding = "20px";
-        div.style.zIndex = "-2";
 
         const title = document.createElement("p");
         title.innerHTML = "Title:" + " " + `${book.title}`;
@@ -78,6 +86,7 @@ function createBookCover(){
         removeButton.style.backgroundColor = "rgb(182, 144, 233)";
         removeButton.style.fontSize = "1rem";
         removeButton.style.color = "white";
+
         bookList.append(removeButton, read);
         removeButton.addEventListener("click", () => {
 
@@ -96,6 +105,7 @@ function createBookCover(){
         read.style.width = "100px";
         read.style.marginLeft = "-90px";
         read.style.marginTop = "150px";
+
 
 
         function changeReadStatus(){
@@ -130,42 +140,10 @@ function addBookToLibrary(){
 
     myLibrary.push(book);
     localStorage.setItem("myLibraryList", JSON.stringify(myLibrary));
+
     document.querySelector("form").reset();
     bookForm.style.display = "none";
     createBookCover();
-    updateLibrary();
-};
-
-function updateLibrary(){
-        myLibrary = [];
-        bookList.removeChild(emptyAlert);
 };
 
 
-function displayBooks() {
-    //loops through array and displays each book on the page
-
-};
-
-
-const emptyAlert = document.createElement("h1");
-emptyAlert.innerHTML = "Your library is empty!";
-bookList.appendChild(emptyAlert);
-emptyAlert.style.zIndex = "-1";
-emptyAlert.style.marginTop = "120px";
-
-
-
-
-
-//Next Steps:
-    // take user input and store in array -         done
-    // display array items and loop through them -  done
-    // add delete button to remove each book -      done
-
-    // add function that shows read status/ change status of book
-        //toggle read status on Book prototype -    in progress
-
-    // change read status on form form check to selected options of yes or no
-    
-    // fix sizing of booklist div so that multiple books align evenly
