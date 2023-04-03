@@ -14,6 +14,7 @@ let myLibrary = [];
 
 
 function openBookForm() {
+
     document.getElementById("bookForm").style.display = "initial";
     bookForm.style.display = "grid";
     bookForm.style.gridTemplateColumns = "300px";
@@ -23,8 +24,7 @@ function openBookForm() {
     bookForm.style.padding = "20px";
     bookForm.style.marginLeft = "40%";
     bookForm.style.marginTop = "-33%";
-    
-    // do stuff here
+
 };
 
 
@@ -79,7 +79,25 @@ function createBookCover(){
             bookList.removeChild(removeButton);
         });
 
-})};
+        read.style.height = "50px";
+        read.style.width = "100px";
+        read.style.marginLeft = "-500px";
+        read.style.marginTop = "150px";
+        bookList.append(read);
+
+        function changeReadStatus(){
+            if(read.innerHTML == "Read: on"){
+                read.innerHTML = "Read: off";
+            } 
+            
+            else{
+                read.innerHTML = "Read: on";
+            }
+        };
+
+        read.addEventListener("click", changeReadStatus);
+
+    })};
 
 
 function addBookToLibrary(){
@@ -123,17 +141,13 @@ emptyAlert.style.marginTop = "120px";
 
 
 //Next Steps:
-    // take user input and store in array - done
-    // display array items and loop through them - done
-    // add delete button to remove each book
-    // add function that showsn read status/ change status of book
-        //toggle read status on Book prototype
+    // take user input and store in array -         done
+    // display array items and loop through them -  done
+    // add delete button to remove each book -      done
 
+    // add function that shows read status/ change status of book
+        //toggle read status on Book prototype -    in progress
 
-//add new book button 
-    //shows form allowing users to input details for new book
-    //event.preventDefault()
-
-//add button to remove each book's display from library
-
-//Add button on book display to change read status
+    // change read status on form form check to selected options of yes or no
+    
+    // fix sizing of booklist div so that multiple books align evenly
