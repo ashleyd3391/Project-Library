@@ -77,6 +77,7 @@ function createBookCover(){
         
         div.append(title, author, pages);
 
+
         const removeButton = document.createElement("button");
         removeButton.innerHTML = "Remove";
         removeButton.style.height = "50px";
@@ -93,6 +94,7 @@ function createBookCover(){
             bookList.removeChild(div);
             bookList.removeChild(removeButton);
             bookList.removeChild(read);
+            myLibrary.remove(book);
         });
 
         removeButton.removeEventListener("click", () => {
@@ -124,7 +126,6 @@ function createBookCover(){
         };
 
         read.addEventListener("click", changeReadStatus);
-
     })};
 
 
@@ -144,6 +145,8 @@ function addBookToLibrary(){
     document.querySelector("form").reset();
     bookForm.style.display = "none";
     createBookCover();
-};
 
+    myLibrary = [];
+
+};
 
